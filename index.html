@@ -1,0 +1,236 @@
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script src="Scripts/jquery-3.4.1.js"></script>
+    <style>
+        body {
+          background-color:#252525;
+          height:auto;
+        }
+        .custom {
+        
+           background-color:#252525;
+           color:white;   
+           border:none;
+           outline:none;
+           padding-left:20px;     
+        }
+        ::placeholder{
+        color:white;
+        
+        }        
+
+    </style>
+    <script>
+        
+      $(document).ready(function(){           
+          function weatherdata() {
+              $.ajax({
+                  url: "https://api.openweathermap.org/data/2.5/weather?q=Chennai&APPID=09e7a4e8ee418a607b4fcec06929900e",
+                  async: true,
+                  type: "GET",
+                  datatype:"json",
+                  success: function (data) {
+                      $("#weather").text(Math.floor(data.main.temp - 273.15) + decodeURI('%C2%B0') + "C")///Add the weather from api
+                      $("#location").text(data.name);
+                      $('#Status').text(data.weather[0].main)
+                      if (data.weather[0].main == "Rain" || data.weather[0].main == "Drizzle") {
+                          var imgurl = "/Images/showerrain.jpg"
+                          $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/t7Qb8655Z1VfBGr5XB/giphy.gif)', 'background-size', 'cover','background-repeat','no-repeat');
+                      } else if (data.weather[0].main == "Clouds"){
+                          var imgurl = "/Images/showerrain.jpg"
+                          $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+
+                      } else if (data.weather[0].main == "Clear") {
+                          var imgurl = "/Images/showerrain.jpg"
+                          $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+
+                      } else if (data.weather[0].main == "Haze"||data.weather[0].main=="Mist") {
+                          var imgurl = "/Images/showerrain.jpg"
+                          $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/6hNJHnfsuoFDa/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+
+                      }
+                      console.log(data)
+                  },
+                  error: function (ex) {
+
+                      console.log("Error");
+                  }
+
+              });
+          }
+          weatherdata();
+
+          /////////////////////////////////////////////////////////////motivational quotes view//////////////////////////////////////////////////////////////////////
+
+          $.ajax({
+              url: "http://quotes.rest/qod.json?category=inspire",
+              type: "GET",
+              datatype: "json",
+              //contentType: "application/json",
+              success: function (data) {
+                  //$('#Quotestag').css('background-image', 'url('+data.contents.quotes[0].background+')','background-repeat','no-repeat','background-size','cover');
+                  console.log(data.contents.quotes[0].quote);
+                  console.log(data);
+                  console.log(data.contents.quotes[0].background);
+                  var span = document.getElementById('Quotestag').children;
+                  span[0].innerHTML = data.contents.quotes[0].quote;
+                  span[1].innerHTML = "-"+data.contents.quotes[0].author;
+              },
+              error: function (ex) {
+
+                  console.log(ex);
+              }
+
+          });
+ });
+        
+      $(document).ready(function () {
+          $('#Searchbut').click(function(e){
+              alert("ok");
+              var cityname = document.getElementById('cityname').value;
+              if (cityname != "") {
+                  $.ajax({
+                      url: "https://api.openweathermap.org/data/2.5/weather",    ///?q=London&APPID=09e7a4e8ee418a607b4fcec06929900e",
+                      async: true,
+                      type: "GET",
+                      data: { 'q': cityname, 'APPID': '09e7a4e8ee418a607b4fcec06929900e' },
+                      datatype: "json",
+                      success: function (data) {
+                          $("#weather").text(Math.floor(data.main.temp - 273.15) + decodeURI('%C2%B0') + "C")///Add the weather from api
+                          $("#location").text(data.name);
+                          $('#Status').text(data.weather[0].main);
+                          document.getElementById('cityname').value = "";
+                          if (data.weather[0].main == "Rain" || data.weather[0].main == "Drizzle") {
+                              var imgurl = "/Images/showerrain.jpg"
+                              $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/t7Qb8655Z1VfBGr5XB/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');                              
+                              }else if (data.weather[0].main == "Clouds"){
+                                  var imgurl = "/Images/showerrain.jpg"
+                                  $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+                                  
+                              } else if (data.weather[0].main == "Clear") {
+                                  var imgurl = "/Images/showerrain.jpg"
+                                  $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+
+                              } else if (data.weather[0].main == "Haze" || data.weather[0].main == "Mist") {
+                                  var imgurl = "/Images/showerrain.jpg"
+                                  $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/6hNJHnfsuoFDa/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+
+                              }
+                          console.log(data)
+                      },
+                      error: function (ex) {
+
+                          console.log(ex.responseJSON.cod);
+                          if (ex.responseJSON.cod == "404") {
+                              alert("City not found");
+                              document.getElementById('cityname').value = "";
+                          };
+                          
+                      }
+                  });
+                  //e.preventDefault();
+              } else {
+
+                  alert('Enter the City Name');
+
+              }
+              e.preventDefault();
+          });
+          
+
+      });
+
+    </script>
+</head>    
+<body>
+    <form id="form1" runat="server">
+    <div>    
+        <!---weather part-->    
+        <div class="container-fluid" style="background-image:url(Images/arial.jpg);background-size:cover;height:auto;opacity:2;" id="header">
+            <div class="container">
+                <div class="row  justify-content-center text-center" style="height:150px">
+                    <input id="cityname" type="input" placeholder="Enter the City..." class=" align-self-end custom" style="width:500px; border-radius:4px 4px 4px 4px; height:50px;" value="" />                    
+                    <input type="submit" value="Search"   class="align-self-end btn btn-primary " style="width:100px;height:50px;border-radius:4px 4px 4px 4px;" id="Searchbut" />
+                </div>
+                <div class="row" style="height:200px; background-color:#252525;margin-top:20px;box-shadow:.5px .5px 15px grey;background-repeat:no-repeat;background-size:cover;" id="Weather-Header">
+                    <div class="col-md-12 d-flex align-items-center justify-content-center" id="content-data" style="color:white;background-color:rgba(0,0,0, 0.5);">
+                        <p class="display-4" id="weather" style="color:white;padding-left:10px;padding-left:30px;text-align:center;"></p><!--Weather in celius-->
+                        <p class="lead" id="location" style="padding-top:30px;padding-left:10px;text-align:center;"></p> <!--State-->  
+                        <p class="display-3" id="Status" style="padding-left:60px;text-align:center;"></p> <!--Status-->             
+                    </div>
+                </div>                
+            </div>
+        </div>
+        
+        <!---mid proverb part-->
+        <div class="container" style="height:650px;margin-top:120px;">
+            <div class="row" style="color:white;font-size:20px;">
+                <div class="col-md-12 text-center display-4 font-weight-normal">
+                Let's be some inspiration
+                </div>
+                <div class="col-md-12 col-md-12" id="Quotestag" style="background-repeat:no-repeat;height:300px;background-size:auto;margin-top:90px;">
+                    <p class="display-4" style="text-align:center"></p>
+                    <blockquote style="font-size:35px;" class="text-right font-weight-light"></blockquote>
+                </div>
+            </div>
+         </div>
+            <!--<div class="row justify-content-center" style="height:300px;margin-top:90px;">
+                <div class="col-md-2 mr-3" style="background-color:white">
+                    
+                </div>
+                <div class="col-md-2 mr-3" style="background-color:white">
+                    
+                </div>
+                <div class="col-md-2 mr-3" style="background-color:white">
+                    
+                </div>
+                <div class="col-md-2 mr-3" style="background-color:white">
+                    
+                </div>
+                
+            </div>-->
+        
+        <!---footer part-->
+    </div>
+<div class="container-fluid bg-light" style="height:30px; color:black">
+                    <div class="row">
+                        <div class="col-md-12 text-center col-sm-12 ">
+                            © 2019 Copyright Vijay
+                        </div>
+                    </div>
+
+</div>
+    </form>
+</body>    
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="Scripts/jquery-3.4.1.js"></script>
+    <script>
+      $(window).ready(function() {
+        if($(window).width() < 600){
+            $('#content-data').removeClass('d-flex');
+        }else{
+          $('#content-data').addClass('d-flex');
+        }
+      });
+      $(window).resize(function(event) {
+        /* Act on the event */
+        if($(window).width() < 600){
+            $('#content-data').removeClass('d-flex');
+            $('#content-data').children().css({
+              'margin': '0',
+              'padding':'0'          
+            });
+            $('#content-data').children().last().css({
+              'margin': '0',
+              'font-size':'32px'              
+            });            
+        }else{
+          $('#content-data').addClass('d-flex')
+        }
+      });
+    </script>
+</html>
