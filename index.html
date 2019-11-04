@@ -74,6 +74,12 @@
            	  #content-data{
            	  	display:block;
            	  }
+           	  #content-data p{
+           	  	margin:0;
+           	  	padding:0;
+           	  	text-align:center;
+           	  	margin-top:1%;
+           	  }
 
            }  
            @media screen and (min-width:601px){
@@ -85,7 +91,21 @@
            	  #content-data{
            	  	display:flex;
            	  }
-
+           	  #content-data p{
+           	  	text-align:center;
+           	  }
+           	  #content-data p:nth-of-type(3){
+           	  	padding-left:60px;
+           	  		text-align:center;
+           	  }
+           	  #content-data p:nth-of-type(1){
+           	  	color:white;
+           	  	padding-left:10px;
+           	  	padding-left:30px;
+           	  }
+           	  #content-data p:nth-of-type(2){
+           	  	padding-top:30px;padding-left:10px;
+           	  }
            }       
     </style>
     <script>
@@ -217,14 +237,10 @@
              datatype:"jason",
              data:{ 'q': argument, 'APPID': '09e7a4e8ee418a607b4fcec06929900e' },
              success:function(data){
-             	console.log(data.weather[0].main);             	
+             	console.log(data);     
+             	console.log(data.weather[0].main)        	
              	var temp =(Math.floor(data.main.temp - 273.15) + decodeURI('%C2%B0'));
-              $('#weather_child_main').append("<div><h4>City:<span>"+data.name+"</span></h4><div><h1>"+temp+"C"+"</h1><i></i></div>");
-              if(data.weather[0].main == "Clouds"){
-              	$('#weather_child_main div div i').addClass("fas fa-cloud")
-              }else if(data.weather[0].main == "Winter"){
-              	$('#weather_child_main div div i').addClass("far fa-snowflake")
-              }
+              $('#weather_child_main').append("<div><h4>City:<span>"+data.name+"</span></h4><div><h1>"+temp+"C"+"</h1><i></i></div><h4 style='font-size:30px;'>"+data.weather[0].main+"</h4></div>");
               $('#weather_child_main').children('div').addClass('col-md-3 card');
               $('#weather_child_main div').attr({
               	id: 'weather_child'              	
@@ -241,6 +257,10 @@
         });
         
      });
+     
+     	var get_children = $('body');
+     	console.log(get_children);
+     
     </script>
 </head>    
 <body>     
@@ -253,9 +273,9 @@
                 </div>
                 <div class="row"  id="Weather-Header">
                     <div class="col-md-12  align-items-center justify-content-center" id="content-data" style="color:white;background-color:rgba(0,0,0, 0.5);">
-                        <p class="display-4" id="weather" style="color:white;padding-left:10px;padding-left:30px;text-align:center;"></p><!--Weather in celius-->
-                        <p class="lead" id="location" style="padding-top:30px;padding-left:10px;text-align:center;"></p> <!--State-->  
-                        <p  id="Status" style="padding-left:60px;text-align:center;"></p> <!--Status-->             
+                        <p class="display-4" id="weather"></p><!--Weather in celius-->
+                        <p class="lead" id="location"></p> <!--State-->  
+                        <p  id="Status"></p> <!--Status-->             
                     </div>
                 </div>                
             </div>
