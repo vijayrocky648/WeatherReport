@@ -1,0 +1,128 @@
+
+        body {
+          background-color:#211717;          
+          height:auto;
+        }
+        .custom {
+        
+           background-color:#33313b;
+           color:white;   
+           border:none;
+           outline:none;
+           padding-left:20px;     
+        }
+        ::placeholder{
+        color:white;
+        	font-family: 'Staatliches', cursive;
+        }  
+        
+        	#Weather-Header{
+        		height:200px;
+        		background-color:#252525;
+        		box-shadow:.5px .5px 15px grey;
+        		background-repeat:no-repeat;
+        		background-size:cover;        	
+        	}
+           #weather_child{
+           	height:auto;
+           	margin-top:10%;
+           	margin-left:3%;
+           	background-color:#e6dedd;
+           	border-radius:5px;
+           	padding:0px;
+           	color:#252525; 
+           	padding:2% 0 0 2%;
+           	font-size:8px;
+           	font-family: 'Staatliches', cursive;        
+           }           
+           #weather_child_main{
+            height:auto;
+           }
+           #weather_child h4{
+           	font-size:20px;
+           }
+           #weather_child h4 span{
+           	font-size:25px;
+           }
+           #weather_child h1{
+           	font-size:65px;
+           }
+           #weather_child i{
+           	font-size:65px;
+           	position:absolute;
+           	right:20%;
+           }  
+           #weather-main{
+           	margin-top:15px;
+           }
+           #CityName{
+               font-size:15px !important;
+           }
+           @media screen and (max-width:600px){
+
+           	  #Status{
+           	  	font-size:55px;
+           	  	
+           	  }
+           	  #content-data{
+           	  	display:block;
+           	  }
+           	  #content-data p{
+           	  	margin:0;
+           	  	padding:0;
+           	  	text-align:center;
+           	  	margin-top:1%;
+           	  }
+             .col-md-3{
+                 margin:2% 0 !important;
+             }
+           }  
+           @media screen and (min-width:601px){
+
+           	  #Status{
+           	  	font-size:85px;           	  	
+           	  	
+           	  }
+           	  #content-data{
+           	  	display:flex;
+           	  }
+           	  #content-data p{
+           	  	text-align:center;
+           	  }
+           	  #content-data p:nth-of-type(3){
+           	  	padding-left:60px;
+           	  		text-align:center;
+           	  }
+           	  #content-data p:nth-of-type(1){
+           	  	color:white;
+           	  	padding-left:10px;
+           	  	padding-left:30px;
+           	  }
+           	  #content-data p:nth-of-type(2){
+           	  	padding-top:30px;padding-left:10px;
+           	  }
+           }       
+  .customcard{
+    height:300px !important;        
+    padding: 2% !important;
+  }
+  .customtemp{
+    padding:5%;
+    margin:2%;;
+     margin-top:5%;
+     
+  }
+  .customname{
+      padding:5%;
+      height:60px;
+  }
+  .pngcustom{
+      height:55px;
+      width: 55px;
+      margin:1%;
+  }
+  .tempstatus{
+     display: flex;
+     justify-content:center;
+     align-items:center;
+  }

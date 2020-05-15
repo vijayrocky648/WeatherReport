@@ -9,114 +9,18 @@
     <script src="https://kit.fontawesome.com/398029acc8.js" crossorigin="anonymous"></script>
     <script src="Scripts/jquery-3.4.1.js"></script>
     <script>
-    	$(document).ready(function(){    		// body...
+    	    		// body...
+    	/*$(document).ready(function(){    		// body...
     		alert('Website need full network access to work Properly')
-    	});      
+    	}); */     
     </script>
     <link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
-    <style>
-        body {
-          background-color:#211717;          
-          height:auto;
-        }
-        .custom {
-        
-           background-color:#33313b;
-           color:white;   
-           border:none;
-           outline:none;
-           padding-left:20px;     
-        }
-        ::placeholder{
-        color:white;
-        	font-family: 'Staatliches', cursive;
-        }  
-        
-        	#Weather-Header{
-        		height:200px;
-        		background-color:#252525;margin-top:20px;
-        		box-shadow:.5px .5px 15px grey;
-        		background-repeat:no-repeat;
-        		background-size:cover;
-        		margin-top:5%;
-        	}
-           #weather_child{
-           	height:auto;
-           	margin-top:10%;
-           	margin-left:3%;
-           	background-color:#e6dedd;
-           	border-radius:5px;
-           	padding:0px;
-           	color:#252525; 
-           	padding:2% 0 0 2%;
-           	font-size:8px;
-           	font-family: 'Staatliches', cursive;        
-           }           
-           #weather_child_main{
-            height:auto;
-           }
-           #weather_child h4{
-           	font-size:20px;
-           }
-           #weather_child h4 span{
-           	font-size:25px;
-           }
-           #weather_child h1{
-           	font-size:65px;
-           }
-           #weather_child i{
-           	font-size:65px;
-           	position:absolute;
-           	right:20%;
-           }  
-           #weather-main{
-           	margin-top:15px;
-           }
-           @media screen and (max-width:600px){
-
-           	  #Status{
-           	  	font-size:55px;
-           	  	
-           	  }
-           	  #content-data{
-           	  	display:block;
-           	  }
-           	  #content-data p{
-           	  	margin:0;
-           	  	padding:0;
-           	  	text-align:center;
-           	  	margin-top:1%;
-           	  }
-
-           }  
-           @media screen and (min-width:601px){
-
-           	  #Status{
-           	  	font-size:85px;           	  	
-           	  	
-           	  }
-           	  #content-data{
-           	  	display:flex;
-           	  }
-           	  #content-data p{
-           	  	text-align:center;
-           	  }
-           	  #content-data p:nth-of-type(3){
-           	  	padding-left:60px;
-           	  		text-align:center;
-           	  }
-           	  #content-data p:nth-of-type(1){
-           	  	color:white;
-           	  	padding-left:10px;
-           	  	padding-left:30px;
-           	  }
-           	  #content-data p:nth-of-type(2){
-           	  	padding-top:30px;padding-left:10px;
-           	  }
-           }       
-    </style>
+    <link rel="stylesheet" href="css/custom.css">
     <script>
-        
+     var getTemp = (temp)=>{    
+      return Math.floor(temp - 273.15) + decodeURI('%C2%B0') + "C";
+     }   
+    ////////Load Initial tempature/////////
       $(document).ready(function(){           
           function weatherdata() {
               $.ajax({
@@ -125,7 +29,7 @@
                   type: "GET",
                   datatype:"json",
                   success: function (data) {
-                      $("#weather").text(Math.floor(data.main.temp - 273.15) + decodeURI('%C2%B0') + "C")///Add the weather from api
+                      $("#weather").text(getTemp(data.main.temp))///Add the weather from api
                       $("#location").text(data.name);
                       $('#Status').text(data.weather[0].main)
                       if (data.weather[0].main == "Rain" || data.weather[0].main == "Drizzle") {
@@ -156,32 +60,12 @@
           weatherdata();
 
           /////////////////////////////////////////////////////////////motivational quotes view//////////////////////////////////////////////////////////////////////
-
-          /*$.ajax({
-              url: "http://quotes.rest/qod.json?category=inspire",
-              type: "GET",
-              datatype: "json",
-              //contentType: "application/json",
-              success: function (data) {
-                  //$('#Quotestag').css('background-image', 'url('+data.contents.quotes[0].background+')','background-repeat','no-repeat','background-size','cover');
-                  console.log(data.contents.quotes[0].quote);
-                  console.log(data);
-                  console.log(data.contents.quotes[0].background);
-                  var span = document.getElementById('Quotestag').children;
-                  span[0].innerHTML = data.contents.quotes[0].quote;
-                  span[1].innerHTML = "-"+data.contents.quotes[0].author;
-              },
-              error: function (ex) {
-
-                  console.log(ex);
-              }
-
-          });*/
+         
        });
         
+       var city_name =["ANDAMAN AND NICOBAR ISLANDS","ANDHRA PRADESH","ARUNACHAL PRADESH","ASSAM","BIHAR","CHATTISGARH","CHANDIGARH","DAMAN AND DIU","DELHI","DADRA AND NAGAR HAVELI","GOA","GUJARAT","HIMACHAL PRADESH","HARYANA","JAMMU AND KASHMIR","JHARKHAND","KERALA","KARNATAKA","LAKSHADWEEP","MEGHALAYA","MAHARASHTRA","MANIPUR","MADHYA PRADESH","MIZORAM","NAGALAND","ORISSA","PUNJAB","PONDICHERRY","RAJASTHAN","SIKKIM","TAMIL NADU","TRIPURA","UTTARAKHAND","UTTAR PRADESH","WEST BENGAL","TELANGANA"] 
       $(document).ready(function () {
-          $('#Searchbut').click(function(e){
-              alert("ok");
+          $('#Searchbut').click(function(e){             
               var cityname = document.getElementById('cityname').value;
               if (cityname != "") {
                   $.ajax({
@@ -233,30 +117,28 @@
           });
           
 
-      });
-     var city_name = ['London','United States','Brazil'];
+      });     
+     $('#weather_child_main').empty();
      city_name.forEach(function (argument) {
      	// body...
      	console.log(argument);
         $.ajax({
              url:"https://api.openweathermap.org/data/2.5/weather",
              type:"GET",
-             datatype:"jason",
+             datatype:"json",
              data:{ 'q': argument, 'APPID': '09e7a4e8ee418a607b4fcec06929900e' },
-             success:function(data){
-             	console.log(data);     
-             	console.log(data.weather[0].main)        	
-             	var temp =(Math.floor(data.main.temp - 273.15) + decodeURI('%C2%B0'));
-              $('#weather_child_main').append("<div><h4>City:<span>"+data.name+"</span></h4><div><h1>"+temp+"C"+"</h1><i></i></div><h4 style='font-size:30px;'>"+data.weather[0].main+"</h4></div>");
-              $('#weather_child_main').children('div').addClass('col-md-3 card');
-              $('#weather_child_main div').attr({
-              	id: 'weather_child'              	
-              });
-              $('#weather_child_main div').find('div').addClass('d-flex');
-              $('#weather_child_main div').find('div').attr({
-              	id: 'weather-main'
-              });
-
+             success:function(data){              
+             // console.log(data);
+              $('#weather_child_main').append(`<div class="col-md-3" style="margin-top:2%;">
+              <div class="card customcard">
+              <div class="customname"><h4 style="text-align:center">${data.name}</h4></div></hr>
+              <div class="customtemp"><h4 style="font-size:65px;text-align:center;">${getTemp(data.main.temp)}</h4></div>
+              <div class="tempstatus">
+              <h4 style="font-size:35px;text-align:center;">${(data.weather[0].main)}</h4>
+              ${data.weather[0].main !="Rain"?` <img src='images/weatherImage/${data.weather[0].main}.png' class='pngcustom'></div>`:`<img src='https://www.animatedimages.org/data/media/606/animated-rain-image-0008.gif' class='pngcustom'></div>`}
+             
+              </div>
+              </div>`)
              },
              error:function(error){
 
@@ -270,50 +152,31 @@
      
     </script>
 </head>    
-<body>    
-<div> 
+<body> 
         <!---weather part-->    
-        <div class="container-fluid" style="background-image:url(Images/arial.jpg);background-size:cover;height:300px;opacity:2;" id="header">
+        <div class="container-fluid" style="background-image:url(Images/arial.jpg);background-size:cover;height:300px;opacity:2;overflow-wrap:normal;overflow:visible;" id="header">
             <div class="container">
                 <div class="row  justify-content-center text-center" style="height:150px">
                     <input id="cityname" type="input" placeholder="Enter the City Name..." class=" align-self-end custom" style="width:500px; border-radius:4px 4px 4px 4px; height:50px;background-color:#211717;"/>                    
                     <input type="submit" value="Search"   class="align-self-end btn btn-primary " style="width:100px;height:50px;border-radius:4px 4px 4px 4px;" id="Searchbut" />
-                </div>
-                <div class="row"  id="Weather-Header">
-                    <div class="col-md-12  align-items-center justify-content-center" id="content-data" style="color:white;background-color:rgba(0,0,0, 0.5);">
-                        <p class="display-4" id="weather"></p><!--Weather in celius-->
-                        <p class="lead" id="location"></p> <!--State-->  
-                        <p  id="Status"></p> <!--Status-->             
-                    </div>
-                </div>                
+                </div>                                
             </div>            
         </div>
-        <div class="container" style="margin-top:5%;margin-bottom:5%;">
-            	<div class="row d-flex justify-content-center align-items-center" id="weather_child_main">
-            		<!--<div class="col-md-3 card" id="weather_child">
-            			<h4>City:<span>London</span></h4>            			
-            			<div class="d-flex" id="weather-main">
-                        <h1>3 <span>&#176;</span></h1>
-                        <i class="far fa-snowflake"></i>
-                        </div>            			
-            		</div>
-            		<div class="col-md-3 card" id="weather_child">
-            			<h4>City:<span>London</span></h4>            			
-            			<div class="d-flex" id="weather-main">
-                        <h1>3 <span>&#176;</span></h1>
-                        <i class="far fa-snowflake"></i>
-                        </div>  
-            		</div>
-            		<div class="col-md-3 card" id="weather_child">
-            			<h4>City:<span>London</span></h4>            			
-            			<div class="d-flex" id="weather-main">
-                        <h1>3 <span>&#176;</span></h1>
-                        <i class="far fa-snowflake"></i>
-                        </div>  
-            		</div> -->           		
-            	</div>
-         </div>
-</div>
+        <div class="container" style="z-index:5;position: relative;top:-100px !important">
+            <div class="row"  id="Weather-Header">
+                <div class="col-md-12  align-items-center justify-content-center" id="content-data" style="color:white;background-color:rgba(0,0,0, 0.5);">
+                    <p class="display-4" id="weather"></p><!--Weather in celius-->
+                    <p class="lead" id="location"></p> <!--State-->  
+                    <p  id="Status"></p> <!--Status-->             
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center" id="weather_child_main">
+                              
+            </div>
+        </div>  
+
 <footer style="text-align:center;color:white;font-family: 'Heebo', sans-serif;">
 	Created and Design By Vijay
 </footer>         
