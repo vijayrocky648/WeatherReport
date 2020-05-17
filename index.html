@@ -135,8 +135,9 @@
               <div class="customtemp"><h4 style="font-size:65px;text-align:center;">${getTemp(data.main.temp)}</h4></div>
               <div class="tempstatus">
               <h4 style="font-size:35px;text-align:center;">${(data.weather[0].main)}</h4>
-              ${data.weather[0].main !="Rain"?` <img src='images/weatherImage/${data.weather[0].main}.png' class='pngcustom'></div>`:`<img src='https://www.animatedimages.org/data/media/606/animated-rain-image-0008.gif' class='pngcustom'></div>`}
-             
+              <img src='images/weatherImage/${data.weather[0].main}.png' class='pngcustom'>
+              </div>
+              </div>           
               </div>
               </div>`)
              },

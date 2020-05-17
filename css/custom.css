@@ -105,6 +105,7 @@
   .customcard{
     height:300px !important;        
     padding: 2% !important;
+    border-radius:10px !important;
   }
   .customtemp{
     padding:5%;
@@ -125,4 +126,5 @@
      display: flex;
      justify-content:center;
      align-items:center;
+     justify-items:;
   }
