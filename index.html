@@ -156,7 +156,10 @@
     </script>
 </head>    
 <body > 
-       <div class="lds-ripple" id="loadinganimation" style="z-index:20;position: absolute;transform: translateX(-50%);left: 50%;top:50%;"><div></div><div></div></div>
+       <div id="loadinganimation" style="z-index:20;position: absolute;transform: translateX(-50%);left: 50%;top:50%;">
+       <div class="lds-ripple" ><div></div><div></div></div>
+       <h4 style="font-family: 'PT Sans', sans-serif;color:rgb(241, 233, 233);text-align:center;">Loading...</h4>
+       </div>
         <!---weather part-->    
        <div id="blurdata" style="filter: blur(8px);">
         <div class="container-fluid" style="background-image:url(Images/arial.jpg);background-size:cover;height:300px;opacity:2;overflow-wrap:normal;overflow:visible;" id="header">
@@ -196,10 +199,11 @@
               </div>
             </div>
           </div>
-        </div>
+      
 <footer style="text-align:center;color:white;font-family: 'Heebo', sans-serif;">
 	Created and Design By Vijay
-</footer>         
+</footer>   
+</div>      
 </body>   
 
     <script src="Scripts/jquery-3.4.1.js"></script> 
