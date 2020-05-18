@@ -164,4 +164,8 @@
 .hide{
 
 display: none ;
-}  
+} 
+.lds-ripple div:nth-child(even){
+
+background-color:orange;
+}
