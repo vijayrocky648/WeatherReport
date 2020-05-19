@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="css/custom.css">
     <script>
         document.onreadystatechange = () => {
-            debugger
-            if (document.readyState == 'loading') {
+            //debugger
+            if (document.readyState !== 'complete') {
                 $('#loadinganimation').removeClass('hide');
                 $('#blurdata').css('visibility', 'hidden')
             } else {
@@ -182,7 +182,7 @@
 
     </div>
     <!---weather part-->
-    <div id="blurdata" style="visibility: hidden;">
+    <div id="blurdata">
         <div class="container-fluid"
             style="background-image:url(Images/arial.jpg);background-size:cover;height:300px;opacity:2;overflow-wrap:normal;overflow:visible;"
             id="header">
