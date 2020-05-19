@@ -4,6 +4,15 @@
           height:auto;
           font-family: 'PT Sans', sans-serif;
         }
+        .customsearch{
+          width:100%;
+          font-family: 'PT Sans', sans-serif;
+          background-color:white;
+          position: relative;
+          z-index: 5;          
+          padding:15px;
+          cursor: pointer;
+        }
         .custom {
         
            background-color:#33313b;
@@ -166,6 +175,8 @@
 display: none ;
 } 
 .lds-ripple div:nth-child(even){
-
-background-color:orange;
+border-color:orange;
 }
+.lds-ripple div:nth-child(odd){
+  border-color:rgb(13, 231, 24);
+  }
