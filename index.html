@@ -19,6 +19,19 @@
     <link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/custom.css">
     <script>
+        document.onreadystatechange = () => {
+            debugger
+            if (document.readyState == 'loading') {
+                $('#loadinganimation').removeClass('hide');
+                $('#blurdata').css('visibility', 'hidden')
+            } else {
+                
+                    $('#loadinganimation').addClass('hide');
+                    $('#blurdata').css('visibility', 'visible')
+               
+            }
+        }
+
         var getTemp = (temp) => {
             return Math.floor(temp - 273.15) + decodeURI('%C2%B0') + "C";
         }
@@ -111,47 +124,47 @@
             });
 
         });
-        function SearchWeather(cityname){
+        function SearchWeather(cityname) {
             $.ajax({
-                        url: "https://api.openweathermap.org/data/2.5/weather",    ///?q=London&APPID=09e7a4e8ee418a607b4fcec06929900e",
-                        async: true,
-                        type: "GET",
-                        data: { 'q': cityname, 'APPID': '09e7a4e8ee418a607b4fcec06929900e' },
-                        datatype: "json",
-                        success: function (data) {
-                            $("#weather").text(Math.floor(data.main.temp - 273.15) + decodeURI('%C2%B0') + "C")///Add the weather from api
-                            $("#location").text(data.name);
-                            $('#Status').text(data.weather[0].main);
-                            document.getElementById('cityname').value = "";
-                            if (data.weather[0].main == "Rain" || data.weather[0].main == "Drizzle") {
-                                var imgurl = "/Images/showerrain.jpg"
-                                $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/t7Qb8655Z1VfBGr5XB/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
-                            } else if (data.weather[0].main == "Clouds") {
-                                var imgurl = "/Images/showerrain.jpg"
-                                $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+                url: "https://api.openweathermap.org/data/2.5/weather",    ///?q=London&APPID=09e7a4e8ee418a607b4fcec06929900e",
+                async: true,
+                type: "GET",
+                data: { 'q': cityname, 'APPID': '09e7a4e8ee418a607b4fcec06929900e' },
+                datatype: "json",
+                success: function (data) {
+                    $("#weather").text(Math.floor(data.main.temp - 273.15) + decodeURI('%C2%B0') + "C")///Add the weather from api
+                    $("#location").text(data.name);
+                    $('#Status').text(data.weather[0].main);
+                    document.getElementById('cityname').value = "";
+                    if (data.weather[0].main == "Rain" || data.weather[0].main == "Drizzle") {
+                        var imgurl = "/Images/showerrain.jpg"
+                        $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/t7Qb8655Z1VfBGr5XB/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+                    } else if (data.weather[0].main == "Clouds") {
+                        var imgurl = "/Images/showerrain.jpg"
+                        $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
 
-                            } else if (data.weather[0].main == "Clear") {
-                                var imgurl = "/Images/showerrain.jpg"
-                                $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+                    } else if (data.weather[0].main == "Clear") {
+                        var imgurl = "/Images/showerrain.jpg"
+                        $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/EoqbRs25zfHYQ/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
 
-                            } else if (data.weather[0].main == "Haze" || data.weather[0].main == "Mist") {
-                                var imgurl = "/Images/showerrain.jpg"
-                                $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/6hNJHnfsuoFDa/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
+                    } else if (data.weather[0].main == "Haze" || data.weather[0].main == "Mist") {
+                        var imgurl = "/Images/showerrain.jpg"
+                        $('#Weather-Header').css('background-image', 'url(https://media.giphy.com/media/6hNJHnfsuoFDa/giphy.gif)', 'background-size', 'cover', 'background-repeat', 'no-repeat');
 
-                            }
-                            console.log(data)
-                        },
-                        error: function (ex) {
+                    }
+                    console.log(data)
+                },
+                error: function (ex) {
 
-                            console.log(ex.responseJSON.cod);
-                            if (ex.responseJSON.cod == "404") {
-                                //alert("City not found");
-                                $('#exampleModal').modal('show')
-                                document.getElementById('cityname').value = "";
-                            };
+                    console.log(ex.responseJSON.cod);
+                    if (ex.responseJSON.cod == "404") {
+                        //alert("City not found");
+                        $('#exampleModal').modal('show')
+                        document.getElementById('cityname').value = "";
+                    };
 
-                        }
-                    });
+                }
+            });
         }
         var get_children = $('body');
         console.log(get_children);
@@ -161,15 +174,15 @@
 
 <body>
     <div id="loadinganimation" style="z-index:20;position: absolute;transform: translateX(-50%);left: 50%;top:50%;">
-        
+
         <div class="lds-ripple">
             <div></div>
             <div></div>
         </div>
-        
+
     </div>
     <!---weather part-->
-    <div id="blurdata" style="filter: blur(8px);">
+    <div id="blurdata" style="visibility: hidden;">
         <div class="container-fluid"
             style="background-image:url(Images/arial.jpg);background-size:cover;height:300px;opacity:2;overflow-wrap:normal;overflow:visible;"
             id="header">
@@ -233,12 +246,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script>
     $(window).on('load', function () {
-        setTimeout(() => {
-            $('#loadinganimation').addClass('hide');
-            $('#blurdata').css('filter', 'none')
-        }, 2000)
+
 
     });   
 </script>
 <script src="Scripts/searchclick.js"></script>
+
 </html>
