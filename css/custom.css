@@ -1,8 +1,14 @@
 
         body {
-          background-color:#211717;          
+          background-color:#222831;          
           height:auto;
           font-family: 'PT Sans', sans-serif;
+        }
+        .owl-stage .owl-item:nth-child(even) .card.customcard{
+          background-color: #eb6383 !important;
+        }
+        .owl-stage .owl-item:nth-child(odd) .card.customcard{
+          background-color: #2fc4b2 !important;
         }
         .customsearch{
           width:100%;
@@ -13,8 +19,7 @@
           padding:15px;
           cursor: pointer;
         }
-        .custom {
-        
+        .custom {        
            background-color:#33313b;
            color:white;   
            border:none;
@@ -112,10 +117,13 @@
            	  	padding-top:30px;padding-left:10px;
            	  }
            }       
-  .customcard{
+  .card.customcard{
+    font-family: 'Open Sans', sans-serif;
+    color:black !important;
     height:300px !important;        
     padding: 2% !important;
-    border-radius:10px !important;
+    border-radius:30px !important;
+    background:none !important;
   }
   .customtemp{
     padding:5%;
@@ -124,20 +132,21 @@
      
   }
   .customname{
+      text-decoration:underline;
       padding:5%;
       height:60px;
   }
   .pngcustom{
-      height:55px;
-      width: 55px;
-      margin:1%;
+      height:30px;
+      width: 30px !important;
+      margin-left:4%;
   }
   .tempstatus{
      display: flex;
      justify-content:center;
-     align-items:center;    
-  }
-
+     align-items:center;   
+     font-family: 'Open Sans', sans-serif;
+  }  
   .lds-ripple {
     display: inline-block;
     position: relative;
@@ -180,3 +189,23 @@ border-color:orange;
 .lds-ripple div:nth-child(odd){
   border-color:rgb(13, 231, 24);
   }
+
+#owl-demo{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#left,#right{
+  border-radius:30px;
+  cursor: pointer;
+ 
+}
+.imagediv{
+  padding:2%;
+  border-radius:50px;
+  background-color:white;
+}
+i{
+  font-size:35px !important;
+  color:white !important;
+}
