@@ -155,7 +155,7 @@
 
 <body>
     <div id="loadinganimation" style="z-index:20;position: absolute;transform: translateX(-50%);left: 50%;top:50%;">
-
+        <div style=" font-family: 'PT Sans', sans-serif;">Loading...</div>
         <div class="lds-ripple">
             <div></div>
             <div></div>
@@ -225,11 +225,16 @@
                 </div>
             </div>
         </div>
-
-        <footer style="text-align:center;color:white;font-family: 'Heebo', sans-serif;">
-            Created and Design By Vijay
-        </footer>
     </div>
+    <footer style="color:white;font-family: 'Heebo', sans-serif;margin-top:3%;justify-content: space-between;padding:0 20px !important;" class="d-flex">
+        <div></div>
+        <span style="margin-bottom:3px !important;text-align:center;" >Design By  Vijay</span>
+        
+        <div id="branding" style="justify-self: right;">
+           <a href="https://github.com/vijayrocky648" target="_blank"><i class="im im-github"></i></a> 
+          <a href="https://www.linkedin.com/in/vijay-ramesh-104231192/" target="_blank"><i class="im im-linkedin" style="color:white;"></i></a>  
+        </div>
+    </footer>
 </body>
 
 <script src="Scripts/jquery-3.4.1.js"></script>
@@ -296,14 +301,7 @@
         $('#right i').click(function () {
             owl.trigger('next.owl.carousel')
         })
-        owl.on('mousewheel', '.owl-stage', function (e) {
-            if (e.deltaY > 0) {
-                owl.trigger('next.owl');
-            } else {
-                owl.trigger('prev.owl');
-            }
-            e.preventDefault();
-        });
+       
     })
 
 </script>

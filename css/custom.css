@@ -184,10 +184,10 @@
 display: none ;
 } 
 .lds-ripple div:nth-child(even){
-border-color:orange;
+border-color:white;
 }
 .lds-ripple div:nth-child(odd){
-  border-color:rgb(13, 231, 24);
+  border-color:white;
   }
 
 #owl-demo{
@@ -208,4 +208,13 @@ border-color:orange;
 i{
   font-size:35px !important;
   color:white !important;
+}
+p a{
+  color:white;
+}
+#branding i{
+  font-size:18px !important;
+}
+#branding a{
+ margin:0% 10px;
 }
