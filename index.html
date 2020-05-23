@@ -155,12 +155,11 @@
 
 <body>
     <div id="loadinganimation" style="z-index:20;position: absolute;transform: translateX(-50%);left: 50%;top:50%;">
-        <div style=" font-family: 'PT Sans', sans-serif;">Loading...</div>
+        <div style=" font-family: 'PT Sans', sans-serif;color:white;>Loading...</div>
         <div class="lds-ripple">
             <div></div>
             <div></div>
         </div>
-
     </div>
     <!---weather part-->
     <div id="blurdata">
@@ -225,25 +224,31 @@
                 </div>
             </div>
         </div>
+        <footer style="color:white;font-family: 'Heebo', sans-serif;margin-top:3%;text-align: center;" class="container-fluid">         
+            <div class="row">
+               <div class="col-md-4 offset-4"> Design By  Vijay  </div>
+                <div class="col-md-4 d-flex justify-content-end">
+                    <div id="branding"  style="">
+                        <a href="https://github.com/vijayrocky648" target="_blank" data-toggle="tooltip" data-placement="top" title="GitHub"><i class="im im-github"></i></a> 
+                       <a href="https://www.linkedin.com/in/vijay-ramesh-104231192/" target="_blank" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="im im-linkedin" style="color:white;"></i></a>  
+                     </div>
+                </div>   
+            </div>  
+           
+            
+        </footer>
     </div>
-    <footer style="color:white;font-family: 'Heebo', sans-serif;margin-top:3%;justify-content: space-between;padding:0 20px !important;" class="d-flex">
-        <div></div>
-        <span style="margin-bottom:3px !important;text-align:center;" >Design By  Vijay</span>
-        
-        <div id="branding" style="justify-self: right;">
-           <a href="https://github.com/vijayrocky648" target="_blank"><i class="im im-github"></i></a> 
-          <a href="https://www.linkedin.com/in/vijay-ramesh-104231192/" target="_blank"><i class="im im-linkedin" style="color:white;"></i></a>  
-        </div>
-    </footer>
+    
 </body>
 
 <script src="Scripts/jquery-3.4.1.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="Scripts/owl.carousel.min.js"></script>
 
 <script>
     $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip()
         var owl = $('.owl-carousel').owlCarousel({
             margin: 20,
             responsive: {
@@ -301,6 +306,7 @@
         $('#right i').click(function () {
             owl.trigger('next.owl.carousel')
         })
+        
        
     })
 
