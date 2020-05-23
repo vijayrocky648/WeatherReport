@@ -4,9 +4,7 @@
           height:auto;
           font-family: 'PT Sans', sans-serif;
         }
-        .owl-stage{
-          box-shadow: -2px -2px 21px 0px rgba(242,230,242,1) !important;
-        }
+        
         .owl-stage .owl-item:nth-child(even) .card.customcard{
           background-color: #ffa299 !important;
         }
